@@ -1,3 +1,9 @@
+/**
+ * @description: JavaScript 兼容性工具荟萃
+ * @author: liejiayong(809206619@qq.com)
+ * @Date: 2021-06-02 11:43:08
+ */
+
 // validate DOM start
 /**
  * Check if argument is a HTML element.
@@ -25,6 +31,12 @@ export const isNodeList = function (value) {
     (value.length === 0 || isNode(value[0]))
   );
 };
+
+/**
+ *  验证html注释
+ *  @param { string } value
+ */
+export const isHtmlComments = (value) => /<!--[\s\S]*?-->/g.test(value);
 
 /**
  * Check if argument is a SVG element.
@@ -105,14 +117,17 @@ export const isRegExp = function (value) {
 /**
  * Check if argument is a function.
  *
- * @param {Object} value
+ * @param {Function} value
  * @return {Boolean}
  */
-export const isFn = function (value) {
+export const isFunction = function (value) {
   var type = Object.prototype.toString.call(value);
 
   return type === '[object Function]';
 };
+export function isFunction(value) {
+  return value && typeof value === 'function';
+}
 
 /**
  * 检查变量是否 Object 对象
