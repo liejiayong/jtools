@@ -74,7 +74,8 @@ export function openWindow(url, windowName, width, height) {
     p = p + x;
     p = p + ',top=';
     p = p + y;
-    window.open(url, windowName, p);
+    var win = window.open(url, windowName, p);
+    win.opener = null;
   } else {
     var win = window.open(
       url,
