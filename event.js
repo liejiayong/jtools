@@ -27,3 +27,36 @@ function eventTemplateRight(id) {
   };
   $dom = null;
 }
+
+var isNode = function (value) {
+  return value !== undefined && value instanceof HTMLElement && value.nodeType === 1;
+};
+function isFunction(value) {
+  return value && typeof value === 'function';
+}
+/**
+ * 监听元素
+ * @param {HTMLElement} el DOM 元素
+ * @param {String} evName 事件句柄名称
+ * @param {Function} fn  事件执行函数
+ * @param {Boolean} isClear 是否清除DOM绑定
+ */
+function addEvent(el, evName, fn, isClear) {
+  var CONFIG_KEY_ANIMATION_STRING = 'animationend transitionend';
+  isClear = isClear || false;
+
+  if (!isNode(el)) throw 'the argument of el is not HTMLElement';
+  if (!isFunction(fn)) throw 'the argument of fn must be a function';
+
+  function agency(evt) {
+    fn.bind(evt)();
+    el.removeEventListener(evName, agency);
+  }
+  if (~CONFIG_KEY_ANIMATION_STRING.indexOf(evName)) {
+    el.removeEventListener(evName, agency);
+  }
+
+  if (isClear) {
+    el = null;
+  }
+}
