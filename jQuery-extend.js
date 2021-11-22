@@ -21,7 +21,7 @@ function addJQFnCountUp() {
      * $.animate( properties, options ) => $.animate({}={[styleName]:[styleValue]},{duration=400,ease='swing',queue=true,specialEasing={},step=(now,tween)=>{},complete=()={},...})
      */
     $.fn.countUp = function (options) {
-      var defaults = { lastNumber: 10, duration: 200, easing: 'swing' };
+      var defaults = { endNum: 0, duration: 400, easing: 'swing' };
       var opts = $.extend({}, defaults, options);
       $(this).animate(
         {
@@ -32,7 +32,7 @@ function addJQFnCountUp() {
           easing: opts.easing,
           complete: function () {},
           step: function (now, tween) {
-            $(this).html(~~now);
+            $(this).text(~~now);
           },
         }
       );
