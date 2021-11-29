@@ -4,6 +4,45 @@
  * @Date: 2021-06-02 11:44:45
  */
 
+/**
+ * 提取url中的文件名称
+ * 格式如：
+ * getURLFilename('./abc.ts')
+ * getURLFilename('../abc.ts')
+ * getURLFilename('../abc')
+ * @param {String} url 文件URL
+ * @returns
+ */
+export const getURLFilename = (url) => {
+  return url.replace(/(.*\/)*([_-\w]+)(.\w+)*/gi, '$2');
+};
+
+/**
+ * 删除文件名称扩展名
+ * 格式如：
+ * cropFileExt('./abc.ts')
+ * cropFileExt('../abc.ts')
+ * cropFileExt('../abc')
+ * @param {String} url 文件URL
+ * @returns
+ */
+export const cropFileExt = (url) => {
+  return url.replace(/\.\w+$/gi, '');
+};
+
+/**
+ * 提取url中的文件名称扩展名
+ * 格式如：
+ * getFileExt('./abc.ts')
+ * getFileExt('../abc.ts')
+ * getFileExt('../abc')
+ * @param {String} url 文件URL
+ * @returns
+ */
+export const getFileExt = (url) => {
+  return url.substring(url.lastIndexOf('.') + 1);
+};
+
 /* 获取移动终端浏览器版本信息 */
 export const browerTerminal = (function () {
   var u = navigator.userAgent,
