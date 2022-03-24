@@ -398,3 +398,15 @@ export const bottomVisible = () => {
     (document.documentElement.scrollHeight || document.documentElement.clientHeight)
   );
 };
+
+/**
+ * 引入link
+ * @param {string} url
+ */
+function includeLinkStyle(url) {
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = url;
+  document.getElementsByTagName('head')[0].appendChild(link);
+}
