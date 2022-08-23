@@ -24,9 +24,9 @@ export function addClass(el, cls) {
   if (hasClass(el, cls)) {
     return;
   }
-  let newCls = el.className.split(' ');
+  let newCls = el.className.split(" ");
   newCls.push(cls);
-  el.className = newCls.join(' ');
+  el.className = newCls.join(" ");
 }
 
 /**
@@ -39,7 +39,7 @@ export function removeClass(el, cls) {
     return;
   }
   let reg = new RegExp(`(^|\\s)${cls}(\\s|$)`);
-  el.className = el.className.replace(reg, '');
+  el.className = el.className.replace(reg, "");
 }
 
 /**
@@ -52,7 +52,7 @@ export function getStyle(ele, style) {
   if (window.getComputedStyle) {
     ret = window.getComputedStyle(ele, null).getPropertyValue(style);
   } else {
-    if (style === 'opacity') {
+    if (style === "opacity") {
       var filter = null;
       // 早期的 IE 中要设置透明度有两个方法：
       // 1、alpha(opacity=0)
@@ -70,12 +70,12 @@ export function getStyle(ele, style) {
       }
       // 透明度的值默认返回 1
       ret = 1;
-    } else if (style === 'float') {
-      ret = ele.currentStyle.getAttribute('styleFloat');
-    } else if ((style === 'width' || style === 'height') && ele.currentStyle[style] === 'auto') {
+    } else if (style === "float") {
+      ret = ele.currentStyle.getAttribute("styleFloat");
+    } else if ((style === "width" || style === "height") && ele.currentStyle[style] === "auto") {
       // 取高宽使用 getBoundingClientRect
       let clientRect = ele.getBoundingClientRect();
-      ret = (style === 'width' ? clientRect.right - clientRect.left : clientRect.bottom - clientRect.top) + 'px';
+      ret = (style === "width" ? clientRect.right - clientRect.left : clientRect.bottom - clientRect.top) + "px";
     }
     // 其他样式，无需特殊处理
     ret = ele.currentStyle.getAttribute(style);
@@ -88,18 +88,18 @@ export function getStyle(ele, style) {
  * @param {String} style
  */
 function preStyle(style) {
-  var el = document.createElement('div');
+  var el = document.createElement("div");
 
   var vendor = (function () {
     var transformName = {
-      webkit: 'webkitTransform',
-      Moz: 'MozTransform',
-      O: 'OTransform',
-      ms: 'msTransform',
-      standard: 'transform',
+      webkit: "webkitTransform",
+      Moz: "MozTransform",
+      O: "OTransform",
+      ms: "msTransform",
+      standard: "transform",
     };
     for (var key in transformName) {
-      if (el[key] !== 'undefined') {
+      if (el[key] !== "undefined") {
         return key;
       }
     }
@@ -110,25 +110,25 @@ function preStyle(style) {
     return false;
   }
 
-  if (vendor === 'standard') {
+  if (vendor === "standard") {
     return style;
   }
 
   return vendor + style.charAt(0).toUpperCase() + style.substr(1);
 }
 function preStyleCss(style) {
-  var el = document.createElement('div');
+  var el = document.createElement("div");
 
   var vendor = (function () {
     var transformName = {
-      webkit: 'webkitTransform',
-      moz: 'MozTransform',
-      o: 'OTransform',
-      ms: 'msTransform',
-      standard: 'transform',
+      webkit: "webkitTransform",
+      moz: "MozTransform",
+      o: "OTransform",
+      ms: "msTransform",
+      standard: "transform",
     };
     for (var key in transformName) {
-      if (el[key] !== 'undefined') {
+      if (el[key] !== "undefined") {
         return key;
       }
     }
@@ -139,11 +139,11 @@ function preStyleCss(style) {
     return false;
   }
 
-  if (vendor === 'standard') {
+  if (vendor === "standard") {
     return style;
   }
 
-  return '-' + vendor + '-' + style;
+  return "-" + vendor + "-" + style;
 }
 
 /**
@@ -159,15 +159,15 @@ function inputSelection(id, startPos, endPos, preSymbol, endSymbol, direction) {
   var $el = document.querySelector(id),
     val = $el.value;
 
-  if (!$el.tagName === 'INPUT') return console.trace(':::the function is used to be input Element');
+  if (!$el.tagName === "INPUT") return console.trace(":::the function is used to be input Element");
 
-  $el.addEventListener('focus', function (e) {
+  $el.addEventListener("focus", function (e) {
     setTimeout(function () {
       sele($el);
     });
   });
 
-  $el.addEventListener('click', function (e) {
+  $el.addEventListener("click", function (e) {
     setTimeout(function () {
       sele($el);
     });
@@ -177,10 +177,10 @@ function inputSelection(id, startPos, endPos, preSymbol, endSymbol, direction) {
     if ($el.setSelectionRange) {
       startPos = startPos || 0;
       endPos = endPos || $el.value.length;
-      direction = direction || 'forward';
+      direction = direction || "forward";
       $el.setSelectionRange(startPos, endPos, direction);
     } else {
-      console.trace(':::setSelectionRange不兼容该方法');
+      console.trace(":::setSelectionRange不兼容该方法");
     }
   }
 }
@@ -221,9 +221,9 @@ export const domInfo = {
  * @param {HTMLElement} el DOM Object
  */
 export function isElement(el) {
-  return typeof HTMLElement === 'object'
+  return typeof HTMLElement === "object"
     ? el instanceof HTMLElement
-    : !!(el && typeof el === 'object' && (el.nodeType === 1 || el.nodeType === 9) && typeof el.nodeName === 'string');
+    : !!(el && typeof el === "object" && (el.nodeType === 1 || el.nodeType === 9) && typeof el.nodeName === "string");
 }
 
 /**
@@ -250,7 +250,7 @@ export function getClientHeight() {
  */
 export function getPageViewWidth() {
   let d = document,
-    a = d.compatMode == 'BackCompat' ? d.body : d.documentElement;
+    a = d.compatMode == "BackCompat" ? d.body : d.documentElement;
   return a.clientWidth;
 }
 
@@ -261,7 +261,7 @@ export function getPageWidth() {
   let g = document,
     a = g.body,
     f = g.documentElement,
-    d = g.compatMode == 'BackCompat' ? a : g.documentElement;
+    d = g.compatMode == "BackCompat" ? a : g.documentElement;
   return Math.max(f.scrollWidth, a.scrollWidth, d.clientWidth);
 }
 
@@ -276,7 +276,7 @@ export function getViewportOffset() {
     };
   } else {
     // ie8及其以下
-    if (document.compatMode === 'BackCompat') {
+    if (document.compatMode === "BackCompat") {
       // 怪异模式
       return {
         w: document.body.clientWidth,
@@ -302,7 +302,7 @@ export function getDocBoundingRect() {
     scrollTop,
     scrollLeft;
 
-  if (document.compatMode === 'BackCompat') {
+  if (document.compatMode === "BackCompat") {
     width = doc.body.clientWidth;
     height = doc.body.clientHeight;
     scrollTop = doc.body.scrollTop;
@@ -374,7 +374,7 @@ export const getScrollPosition = (el = window) => ({
  */
 export const smoothScroll = (el) => {
   document.querySelector(el).scrollIntoView({
-    behavior: 'smooth',
+    behavior: "smooth",
   });
 };
 
@@ -404,9 +404,9 @@ export const bottomVisible = () => {
  * @param {string} url
  */
 function includeLinkStyle(url) {
-  var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
+  var link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
   link.href = url;
-  document.getElementsByTagName('head')[0].appendChild(link);
+  document.getElementsByTagName("head")[0].appendChild(link);
 }

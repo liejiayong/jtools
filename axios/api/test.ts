@@ -9,13 +9,13 @@ request.request({
   interceptors: {
     // 请求拦截器
     requestInterceptors: (config) => {
-      console.log("实例请求拦截器111");
+      console.log("实例请求拦截器1");
 
       return config;
     },
     // 响应拦截器
     responseInterceptors: (result) => {
-      console.log("实例响应拦截器111");
+      console.log("实例响应拦截器1");
       return result;
     },
   },
@@ -33,13 +33,13 @@ request.request({
   interceptors: {
     // 请求拦截器
     requestInterceptors: (config) => {
-      console.log("实例请求拦截器111");
+      console.log("实例请求拦截器2");
 
       return config;
     },
     // 响应拦截器
     responseInterceptors: (result) => {
-      console.log("实例响应拦截器111");
+      console.log("实例响应拦截器2");
       return result;
     },
   },

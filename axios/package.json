@@ -1,0 +1,15 @@
+{
+  "name": "@liejy/axios",
+  "version": "0.0.1",
+  "description": "axios enchanced for typescript",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "axios",
+    "typescript"
+  ],
+  "author": "liejiayong (809206619@qq.com)",
+  "license": "ISC"
+}

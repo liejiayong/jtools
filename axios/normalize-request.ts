@@ -1,10 +1,9 @@
 import Request from "./index";
-import type { RequestConfig } from "./types";
+import type { RequestConfig } from "./index";
 
 interface NormalizeRequestConfig<T> extends RequestConfig {
   data?: T;
 }
-
 interface NormalizeResponse<T> {
   code: number;
   message: string;
@@ -30,7 +29,7 @@ const http = new Request({
 
 const NormalizeRequest = <D, T = any>(config: NormalizeRequestConfig<D>) => {
   const { method = "GET" } = config;
-  if (method === "GET" || method === "GET") {
+  if (method === "GET" || method === "get") {
     config.params = config.data;
   }
   return http.request<NormalizeResponse<T>>(config);
