@@ -26,3 +26,27 @@ function getStrLength(str) {
   }
   return realLength;
 }
+
+
+/**
+ * @description: 数字剪切，默认为千位
+ * @param {*} str 输入值
+ * @param {*} digit 位数
+ * @return {*} 剪切数值
+ * @author: liejiayong(809206619@qq.com)
+ * @Date: 2022-09-20 11:12:59
+ */
+function transferNum(str = '', digit = 3) {
+  const strs = String(str)
+  const arr = strs.split('.')
+  const len = (arr[0] || '').length
+  if (len <= digit) {
+    return strs
+  }
+
+  let prefix = arr[0].substring(0, len - digit)
+  let suffix = arr[0].substring(len - digit).slice(0, 1)
+  suffix = suffix == '0' ? '' : `.${suffix}`
+  console.log(prefix, suffix)
+  return `${prefix}${suffix}k`
+}
