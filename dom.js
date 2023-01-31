@@ -410,3 +410,15 @@ function includeLinkStyle(url) {
   link.href = url;
   document.getElementsByTagName("head")[0].appendChild(link);
 }
+
+/**
+ * @description: 格式化文本
+ * @param {*} str
+ * @return {*}
+ * @author: liejiayong(809206619@qq.com)
+ * @Date: 2023-01-31 16:27:57
+ */
+function formatText(str) {
+  str = str||''
+  return str.replace(/style=".*?"/g,'').replace(/<br\s*\/?>/g,'')
+}
